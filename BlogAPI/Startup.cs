@@ -6,27 +6,23 @@ using BlogAPI.Src.Servicos.Implementacoes;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace BlogAPI
 {
     public class Startup
     {
-        private object sopt;
+        
 
         public Startup(IConfiguration configuration)
         {
@@ -123,8 +119,7 @@ namespace BlogAPI
           );
         }
 
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,
-BlogPessoalContexto contexto)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env,BlogPessoalContexto contexto)
         {
             // Ambiente de Desenvolvimento
             if (env.IsDevelopment())
@@ -142,16 +137,16 @@ BlogPessoalContexto contexto)
             app.UseDeveloperExceptionPage();
             app.UseSwagger();
             app.UseSwaggerUI(c => {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "BlogPessoal v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json","BlogPessoal v1");
                 c.RoutePrefix = string.Empty;
             });
             // Rotas
             app.UseRouting();
             app.UseCors(c => c
-            .AllowAnyOrigin()
-            .AllowAnyMethod()
-            .AllowAnyHeader()
-            );
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader()
+                       );
             // Autenticação e Autorização
             app.UseAuthentication();
             app.UseAuthorization();
