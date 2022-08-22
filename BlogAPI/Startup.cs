@@ -124,7 +124,7 @@ namespace BlogAPI
             // Ambiente de Desenvolvimento
             if (env.IsDevelopment())
             {
-                contexto.Database.EnsureCreated();
+                
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => {
